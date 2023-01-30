@@ -1,0 +1,224 @@
+@import "abstracts";
+
+* {
+    @include theme-change;
+}
+
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+
+    background-color: #e7e7e7;
+}
+
+.calculator {
+    @include flex(column, flex-end, flex-end, flex-end, 2.5rem, wrap);
+    @include respond-phone {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0;
+    }
+
+    position: relative;
+
+    overflow: hidden;
+
+    width: 100%;
+    max-width: 360px;
+    height: 100%;
+    max-height: 720px;
+
+    font-weight: bold;
+    color: $light-text;
+
+    background-color: $light-background;
+    border-radius: 2.5rem;
+    box-shadow: rgba(149 157 165 / 20%) 0 8px 24px;
+}
+
+.theme-btn {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: calc(25% - 2rem);
+}
+
+.calculations {
+    display: flex;
+    flex-direction: column-reverse;
+
+    padding: 0 2.5rem;
+
+    font-size: 3.6rem;
+    text-align: right;
+
+    span {
+        line-break: anywhere;
+    }
+
+    .preview {
+        font-size: 1.8rem;
+        color: $light-text-bg;
+    }
+}
+
+button {
+    @include hover;
+    @include respond-phone {
+        font-size: 2.4rem;
+    }
+
+    cursor: pointer;
+
+    aspect-ratio: 1 / 1;
+    padding: 1.5rem;
+
+    font-size: 2.2rem;
+
+    background-color: $light-button;
+    border: none;
+    border-radius: 1.6rem;
+    outline: none;
+
+    &:not(.theme-btn) {
+        height: 100%;
+    }
+
+    &:hover {
+        background-color: $light-button-hover;
+    }
+
+    &:active {
+        background-color: $light-button-click;
+    }
+}
+
+.panel {
+    @include flex(row, flex-start, flex-start, flex-start, 1rem, wrap);
+
+    width: 100%;
+    padding: 2rem;
+    background-color: $light-foreground;
+    border-radius: 2rem;
+
+    button {
+        width: calc(25% - 1rem);
+
+        &:nth-child(4n) {
+            margin-left: 1rem;
+            color: $light-operators;
+        }
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+            color: $light-operators;
+        }
+    }
+}
+
+.panel-expanded {
+    @extend .panel;
+
+    /* stylelint-disable-next-line no-descending-specificity */
+    button {
+        width: calc(20% - 1rem);
+        font-size: 1.8rem;
+
+        &:nth-child(4n) {
+            margin-left: 0;
+            color: $light-text;
+        }
+
+        &:nth-child(5n),
+        &:nth-child(4) {
+            color: $light-operators;
+        }
+
+        &:nth-child(1) {
+            font-size: 1.5rem;
+        }
+
+        &:nth-child(4),
+        &:nth-child(29) {
+            font-size: 1.3rem;
+        }
+
+        &:nth-child(5n) {
+            margin-left: 1rem;
+        }
+    }
+}
+
+.font-lower {
+    /* stylelint-disable-next-line no-descending-specificity */
+    button {
+        &:first-child,
+        &:nth-child(4) {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+#dark {
+    .calculator {
+        color: $dark-text;
+        background-color: $dark-background;
+        box-shadow: rgba(32 37 41 / 20%) 0 8px 24px;
+    }
+
+    .calculations {
+        .preview {
+            color: $dark-text-bg;
+        }
+    }
+
+    button {
+        color: $dark-text;
+        background-color: $dark-button;
+
+        &:hover {
+            background-color: $dark-button-hover;
+        }
+
+        &:active {
+            background-color: $dark-button-click;
+        }
+    }
+
+    .panel {
+        background-color: $dark-foreground;
+
+        button {
+            &:nth-child(4n),
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3) {
+                color: $light-operators;
+            }
+        }
+    }
+
+    .panel-expanded {
+        /* stylelint-disable-next-line no-descending-specificity */
+        button {
+            &:nth-child(4n) {
+                color: $dark-text;
+            }
+
+            &:nth-child(5n),
+            &:nth-child(4) {
+                color: $dark-operators;
+            }
+        }
+    }
+}
+
+.app[id*="dark"] {
+    background-color: #1a1c22;
+}

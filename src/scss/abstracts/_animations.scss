@@ -1,0 +1,7 @@
+@mixin hover {
+    transition: background-color 0.1s ease-in, color 0.1s ease-in;
+}
+
+@mixin theme-change {
+    transition: background-color 0.1s ease-in, color 0.1s ease-in, box-shadow 0.1s ease-in;
+}

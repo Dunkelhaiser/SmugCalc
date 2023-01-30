@@ -1,0 +1,17 @@
+.expand-enter {
+    width: 0%;
+}
+
+.expand-enter-active {
+    width: calc(20% - 1rem);
+    transition: all 0.3s ease-in-out;
+}
+
+.expand-exit {
+    width: calc(20% - 1rem);
+}
+
+.expand-exit-active {
+    width: 0%;
+    transition: all 0.3s ease-in-out;
+}
